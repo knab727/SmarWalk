@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import knab.pl.smartwalk.R;
+import knab.pl.smartwalk.SmartWalkApplication;
 import knab.pl.smartwalk.ui.fragments.GoniometerFragment;
 import knab.pl.smartwalk.ui.fragments.SoleSensorGraphFragment;
 import knab.pl.smartwalk.ui.fragments.SolesFragment;
@@ -32,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ((SmartWalkApplication)getApplication()).getSignalComponent().inject(this);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import knab.pl.smartwalk.R;
+import knab.pl.smartwalk.SmartWalkApplication;
 
 public class SolesFragment extends Fragment {
     public SolesFragment() {
@@ -18,6 +19,7 @@ public class SolesFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ((SmartWalkApplication)getActivity().getApplication()).getSignalComponent().inject(this);
     }
 
     @Override
