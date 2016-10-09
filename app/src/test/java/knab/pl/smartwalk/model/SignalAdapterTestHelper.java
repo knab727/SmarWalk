@@ -1,28 +1,31 @@
 package knab.pl.smartwalk.model;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SignalAdapterTestHelper {
 
-    public static Message provideMessage() {
-        Message message = new Message();
-        message.milis = 1;
-        message.left_top = 2;
-        message.left_1_inner = 3;
-        message.left_1_outer = 4;
-        message.left_2_inner = 5;
-        message.left_2_outer = 6;
-        message.left_3_inner = 7;
-        message.left_3_outer = 8;
-        message.left_bottom = 9;
+    public static List<SignalSampleSensorWrapper> provideMessage() {
+        List<SignalSampleSensorWrapper> message = new ArrayList<>();
 
-        message.right_top = 2;
-        message.right_1_inner = 3;
-        message.right_1_outer = 4;
-        message.right_2_inner = 5;
-        message.right_2_outer = 6;
-        message.right_3_inner = 7;
-        message.right_3_outer = 8;
-        message.right_bottom = 9;
+        message.add(new SignalSampleSensorWrapper(SensorNames.LEFT_TOP, 1, 2));
+        message.add(new SignalSampleSensorWrapper(SensorNames.LEFT_ONE_OUTER, 1, 3));
+        message.add(new SignalSampleSensorWrapper(SensorNames.LEFT_ONE_INNER, 1, 4));
+        message.add(new SignalSampleSensorWrapper(SensorNames.LEFT_TWO_OUTER, 1, 5));
+        message.add(new SignalSampleSensorWrapper(SensorNames.LEFT_TWO_INNER, 1, 6));
+        message.add(new SignalSampleSensorWrapper(SensorNames.LEFT_THREE_INNER, 1, 7));
+        message.add(new SignalSampleSensorWrapper(SensorNames.LEFT_THREE_OUTER, 1, 8));
+        message.add(new SignalSampleSensorWrapper(SensorNames.LEFT_BOTTOM, 1, 9));
+        message.add(new SignalSampleSensorWrapper(SensorNames.RIGHT_TOP, 1, 2));
+        message.add(new SignalSampleSensorWrapper(SensorNames.RIGHT_ONE_OUTER, 1, 3));
+        message.add(new SignalSampleSensorWrapper(SensorNames.RIGHT_ONE_INNER, 1, 4));
+        message.add(new SignalSampleSensorWrapper(SensorNames.RIGHT_TWO_OUTER, 1, 5));
+        message.add(new SignalSampleSensorWrapper(SensorNames.RIGHT_TWO_INNER, 1, 6));
+        message.add(new SignalSampleSensorWrapper(SensorNames.RIGHT_THREE_INNER, 1, 7));
+        message.add(new SignalSampleSensorWrapper(SensorNames.RIGHT_THREE_OUTER, 1, 8));
+        message.add(new SignalSampleSensorWrapper(SensorNames.RIGHT_BOTTOM, 1, 9));
+
         return message;
     }
 }
