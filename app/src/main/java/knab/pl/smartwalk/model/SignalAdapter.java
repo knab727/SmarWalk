@@ -6,12 +6,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static knab.pl.smartwalk.model.SensorNames.*;
+
 public class SignalAdapter {
     private List<SignalSampleSensorWrapper> rawSignal = new ArrayList<>();
     private Map<String, List<SignalSample>> sensorSignals = new HashMap<>();
 
     public SignalAdapter() {
-        sensorSignals.put(SensorNames.LEFT_TOP, new ArrayList<SignalSample>());
+        sensorSignals.put(LEFT_TOP, new ArrayList<SignalSample>());
         sensorSignals.put(SensorNames.LEFT_ONE_OUTER, new ArrayList<SignalSample>());
         sensorSignals.put(SensorNames.LEFT_ONE_INNER, new ArrayList<SignalSample>());
         sensorSignals.put(SensorNames.LEFT_TWO_OUTER, new ArrayList<SignalSample>());
@@ -28,6 +30,42 @@ public class SignalAdapter {
         sensorSignals.put(SensorNames.RIGHT_THREE_OUTER, new ArrayList<SignalSample>());
         sensorSignals.put(SensorNames.RIGHT_THREE_INNER, new ArrayList<SignalSample>());
         sensorSignals.put(SensorNames.RIGHT_BOTTOM, new ArrayList<SignalSample>());
+
+        mockSignal();
+    }
+
+    private void mockSignal() {
+        int numberOfSteps = 20;
+        int numberOfMillisPerStep = 60000 / numberOfSteps;
+        for (int i = 0; i < numberOfSteps; i++) {
+            mockStep(numberOfMillisPerStep, i);
+        }
+    }
+
+    private void mockStep(int numberOfMillisPerStep, int offset) {
+        for (int i = 0; i < numberOfMillisPerStep; i = i + 5) {
+            long milis = offset * numberOfMillisPerStep + i;
+            int sinValue = (int) Math.round(Math.abs(Math.sin(i)*Math.pow(2, 12)));
+            int cosValue = (int) Math.round(Math.abs(Math.cos(i)*Math.pow(2, 12)));
+
+            sensorSignals.get(LEFT_TOP).add(new SignalSample(milis, sinValue));
+            sensorSignals.get(LEFT_ONE_OUTER).add(new SignalSample(milis, sinValue));
+            sensorSignals.get(LEFT_ONE_INNER).add(new SignalSample(milis, sinValue));
+            sensorSignals.get(LEFT_TWO_OUTER).add(new SignalSample(milis, cosValue));
+            sensorSignals.get(LEFT_TWO_INNER).add(new SignalSample(milis, cosValue));
+            sensorSignals.get(LEFT_THREE_OUTER).add(new SignalSample(milis, sinValue));
+            sensorSignals.get(LEFT_THREE_INNER).add(new SignalSample(milis, sinValue));
+            sensorSignals.get(LEFT_BOTTOM).add(new SignalSample(milis, cosValue));
+
+            sensorSignals.get(RIGHT_TOP).add(new SignalSample(milis, cosValue));
+            sensorSignals.get(RIGHT_ONE_OUTER).add(new SignalSample(milis, cosValue));
+            sensorSignals.get(RIGHT_ONE_INNER).add(new SignalSample(milis, cosValue));
+            sensorSignals.get(RIGHT_TWO_OUTER).add(new SignalSample(milis, sinValue));
+            sensorSignals.get(RIGHT_TWO_INNER).add(new SignalSample(milis, sinValue));
+            sensorSignals.get(RIGHT_THREE_OUTER).add(new SignalSample(milis, cosValue));
+            sensorSignals.get(RIGHT_THREE_INNER).add(new SignalSample(milis, cosValue));
+            sensorSignals.get(RIGHT_BOTTOM).add(new SignalSample(milis, sinValue));
+        }
     }
 
     public void addMessage(SignalSampleSensorWrapper message) {

@@ -8,10 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import javax.inject.Inject;
+
 import knab.pl.smartwalk.R;
 import knab.pl.smartwalk.SmartWalkApplication;
+import knab.pl.smartwalk.model.SignalAdapter;
 
 public class GoniometerFragment extends Fragment {
+
+    @Inject
+    SignalAdapter signalAdapter;
 
     public GoniometerFragment() {
         // Required empty public constructor

@@ -18,5 +18,5 @@ public class SensorNames {
     public static final String LEFT_TWO_INNER = "LEFT_TWO_INNER";
     public static final String LEFT_THREE_INNER = "LEFT_THREE_INNER";
     public static final String LEFT_THREE_OUTER = "LEFT_THREE_OUTER";
-    public static final String LEFT_BOTTOM = "RIGHT_BOTTOM";
+    public static final String LEFT_BOTTOM = "LEFT_BOTTOM";
 }
