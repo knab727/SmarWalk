@@ -68,6 +68,17 @@ public class SignalAdapter {
         }
     }
 
+    public List<SignalSample> getSignalInMilis(long start, long end, String sensorName) {
+        List<SignalSample> result = new ArrayList<>();
+        List<SignalSample> signalSamples = sensorSignals.get(sensorName);
+        for(SignalSample sample : signalSamples) {
+            if(sample.milis > start && sample.milis < end) {
+                result.add(sample);
+            }
+        }
+        return result;
+    }
+
     public void addMessage(SignalSampleSensorWrapper message) {
         rawSignal.add(message);
         adapt(message);
