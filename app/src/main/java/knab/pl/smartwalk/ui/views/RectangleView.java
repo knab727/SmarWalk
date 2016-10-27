@@ -13,11 +13,19 @@ public class RectangleView extends View {
     private Paint sensorPaint;
     private Rect rect;
 
-    public RectangleView(Context context, int left, int right, int top, int bottom, int pressure) {
+    public RectangleView(Context context, Rect rect, int pressure) {
         super(context);
-        rect = new Rect(left, top, right, bottom);
+        this.rect = rect;
         sensorPaint = new Paint();
         sensorPaint.setColor(setColorPalate(pressure));
+    }
+
+    public void setPressure(int pressure) {
+        sensorPaint.setColor(setColorPalate(pressure));
+    }
+
+    public void setRect(Rect rect) {
+        this.rect = rect;
     }
 
     public int setColorPalate(int pressure) {

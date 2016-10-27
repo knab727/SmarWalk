@@ -1,7 +1,6 @@
 package knab.pl.smartwalk.ui.fragments;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -34,30 +33,36 @@ public class SolesFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((SmartWalkApplication)getActivity().getApplication()).getSignalComponent().inject(this);
+        ((SmartWalkApplication) getActivity().getApplication()).getSignalComponent().inject(this);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_soles, container, false);
-        RelativeLayout relativeLayout = (RelativeLayout) rootView.findViewById(R.id.rect);
         final ImageView iv = (ImageView) rootView.findViewById(R.id.right_foot);
+        RelativeLayout relativeLayout = (RelativeLayout) rootView.findViewById(R.id.rect);
+        addSensorViews(relativeLayout);
         iv.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
                 iv.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 h = iv.getMeasuredHeight();
                 w = iv.getMeasuredWidth();
+                sensorViews.update(h, w);
             }
         });
-        addSensorViews(relativeLayout);
         return rootView;
+    }
+
+    @Override
+    public void onActivityCreated (Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
     }
 
     private void addSensorViews(RelativeLayout relativeLayout) {
         sensorViews = new SensorViews(this.getContext(), h, w);
-        for(RectangleView rectangleView : sensorViews.getViews()) {
+        for (RectangleView rectangleView : sensorViews.getViews()) {
             relativeLayout.addView(rectangleView);
         }
     }
