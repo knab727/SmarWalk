@@ -5,18 +5,17 @@
     tools:context="knab.pl.smartwalk.ui.fragments.GoniometerFragment">
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/right_foot"
-        android:scaleType="fitCenter" />
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:src = "@drawable/right_foot"
+    android:scaleType="fitCenter"
+        android:id="@+id/right_foot">
+    </ImageView>
 
     <RelativeLayout
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1001dp"
-        android:background="#444"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/rect">
 
     </RelativeLayout>
-
 </FrameLayout>
