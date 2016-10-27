@@ -7,14 +7,22 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import javax.inject.Inject;
 
 import knab.pl.smartwalk.R;
 import knab.pl.smartwalk.SmartWalkApplication;
 import knab.pl.smartwalk.model.SignalAdapter;
+import knab.pl.smartwalk.ui.views.RectangleView;
+import knab.pl.smartwalk.ui.views.SensorViews;
 
 public class SolesFragment extends Fragment {
+
+    int h, w;
+    SensorViews sensorViews;
 
     @Inject
     SignalAdapter signalAdapter;
@@ -32,8 +40,26 @@ public class SolesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_soles, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_soles, container, false);
+        RelativeLayout relativeLayout = (RelativeLayout) rootView.findViewById(R.id.rect);
+        final ImageView iv = (ImageView) rootView.findViewById(R.id.right_foot);
+        iv.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                iv.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                h = iv.getMeasuredHeight();
+                w = iv.getMeasuredWidth();
+            }
+        });
+        addSensorViews(relativeLayout);
+        return rootView;
+    }
+
+    private void addSensorViews(RelativeLayout relativeLayout) {
+        sensorViews = new SensorViews(this.getContext(), h, w);
+        for(RectangleView rectangleView : sensorViews.getViews()) {
+            relativeLayout.addView(rectangleView);
+        }
     }
 
 

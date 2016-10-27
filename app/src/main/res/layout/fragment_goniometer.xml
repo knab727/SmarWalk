@@ -4,18 +4,8 @@
     android:layout_height="match_parent"
     tools:context="knab.pl.smartwalk.ui.fragments.GoniometerFragment">
 
-    <ImageView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:src = "@drawable/right_foot"
-    android:scaleType="fitCenter"
-        android:id="@+id/right_foot">
-    </ImageView>
-
-    <RelativeLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/rect">
-
-    </RelativeLayout>
+        android:text="@string/hello_blank_fragment" />
 </FrameLayout>
