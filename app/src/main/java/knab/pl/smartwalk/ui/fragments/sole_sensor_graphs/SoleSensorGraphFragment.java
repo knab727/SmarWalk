@@ -25,7 +25,7 @@ import knab.pl.smartwalk.model.SignalAdapter;
 public class SoleSensorGraphFragment extends Fragment {
 
     private GraphView rightBottomGraphView;
-    private RangeSeekBar rangeSeekBar;
+    private RangeSeekBar<Integer> rangeSeekBar;
 
     @Inject
     SignalAdapter signalAdapter;
@@ -71,6 +71,13 @@ public class SoleSensorGraphFragment extends Fragment {
         rangeSeekBar = (RangeSeekBar) rootView.findViewById(R.id.range_bar);
         rangeSeekBar.setRangeValues(0, 60);
         rangeSeekBar.setTextAboveThumbsColorResource(R.color.colorPrimaryDark);
+
+        rangeSeekBar.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener<Integer>() {
+            @Override
+            public void onRangeSeekBarValuesChanged(RangeSeekBar<?> bar, Integer minValue, Integer maxValue) {
+
+            }
+        });
     }
 
     @Override
