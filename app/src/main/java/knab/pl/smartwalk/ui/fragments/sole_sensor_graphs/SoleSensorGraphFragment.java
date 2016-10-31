@@ -58,9 +58,11 @@ public class SoleSensorGraphFragment extends Fragment implements SoleSensorGraph
         rightBottomGraphView.setTitle(SensorNames.RIGHT_BOTTOM);
         rightBottomGraphView.getViewport().setScalable(true);
         rightBottomGraphView.getViewport().setXAxisBoundsManual(true);
-        rightBottomGraphView.getViewport().setXAxisBoundsManual(true);
+        rightBottomGraphView.getViewport().setYAxisBoundsManual(true);
         rightBottomGraphView.getViewport().setMinX(0);
-        rightBottomGraphView.getViewport().setMaxX(2000);
+        rightBottomGraphView.getViewport().setMaxX(1000);
+        rightBottomGraphView.getViewport().setMinY(0);
+        rightBottomGraphView.getViewport().setMaxY(5000);
 
     }
 
@@ -94,6 +96,9 @@ public class SoleSensorGraphFragment extends Fragment implements SoleSensorGraph
 
     @Override
     public void updateGraphForSensor(DataPoint[] data, String sensorName) {
+        rightBottomGraphView.removeAllSeries();
         rightBottomGraphView.addSeries(new LineGraphSeries(data));
+        rightBottomGraphView.getViewport().setMinX(data[0].getX());
+        rightBottomGraphView.getViewport().setMaxX(data[data.length-1].getX());
     }
 }
