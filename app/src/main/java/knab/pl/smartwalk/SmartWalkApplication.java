@@ -3,27 +3,37 @@ package knab.pl.smartwalk;
 
 import android.app.Application;
 
-import knab.pl.smartwalk.dagger.AppModule;
-import knab.pl.smartwalk.dagger.DaggerSignalComponent;
-import knab.pl.smartwalk.dagger.SignalComponent;
-import knab.pl.smartwalk.dagger.SignalModule;
+import javax.inject.Inject;
+
+import knab.pl.smartwalk.dagger.DaggerRuntimeSmartWalkComponent;
+import knab.pl.smartwalk.dagger.DependencyInjector;
+import knab.pl.smartwalk.dagger.RuntimeAppModule;
+import knab.pl.smartwalk.dagger.SmartWalkComponent;
 
 public class SmartWalkApplication extends Application {
 
-    private SignalComponent signalComponent;
+    private SmartWalkComponent smartWalkComponent;
+
+    @Inject
+    DependencyInjector dependencyInjector;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        signalComponent = DaggerSignalComponent.builder()
-                .appModule(new AppModule(this))
-                .signalModule(new SignalModule())
+        smartWalkComponent = DaggerRuntimeSmartWalkComponent.builder()
+                .runtimeAppModule(new RuntimeAppModule(this))
                 .build();
+        smartWalkComponent.inject(this);
 
     }
 
-    public SignalComponent getSignalComponent() {
-        return signalComponent;
+    public SmartWalkComponent getSmartWalkComponent() {
+        return smartWalkComponent;
+    }
+
+
+    public DependencyInjector provideDependencyInjector() {
+        return dependencyInjector;
     }
 }
