@@ -4,10 +4,9 @@
     android:layout_height="match_parent"
     tools:context="knab.pl.smartwalk.ui.fragments.SoleSensorGraphFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <com.jjoe64.graphview.GraphView
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:id="@+id/bottom_right_graph"/>
 
 </FrameLayout>

@@ -1,6 +1,8 @@
 package knab.pl.smartwalk.model;
 
 
+import com.jjoe64.graphview.series.DataPoint;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -96,5 +98,15 @@ public class SignalAdapter {
 
     public List<SignalSample> getSignalForSensor(String sensorName) {
         return sensorSignals.get(sensorName);
+    }
+
+    public DataPoint[] getSignalAsDataPoints(String sensorName) {
+        List<SignalSample> signalSamples = sensorSignals.get(sensorName);
+        DataPoint points[] = new DataPoint[signalSamples.size()];
+        int i = 0;
+        for(SignalSample sample : signalSamples) {
+            points[i++] = new DataPoint(sample.milis, sample.value);
+        }
+        return points;
     }
 }
