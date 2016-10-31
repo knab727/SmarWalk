@@ -5,7 +5,7 @@ import javax.inject.Singleton;
 import dagger.Component;
 import knab.pl.smartwalk.ui.MainActivity;
 import knab.pl.smartwalk.ui.fragments.GoniometerFragment;
-import knab.pl.smartwalk.ui.fragments.SoleSensorGraphFragment;
+import knab.pl.smartwalk.ui.fragments.sole_sensor_graphs.SoleSensorGraphFragment;
 import knab.pl.smartwalk.ui.fragments.SolesFragment;
 
 @Singleton

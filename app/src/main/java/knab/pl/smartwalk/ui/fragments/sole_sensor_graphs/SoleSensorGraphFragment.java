@@ -1,4 +1,4 @@
-package knab.pl.smartwalk.ui.fragments;
+package knab.pl.smartwalk.ui.fragments.sole_sensor_graphs;
 
 import android.content.Context;
 import android.hardware.Sensor;
@@ -13,6 +13,8 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import org.florescu.android.rangeseekbar.RangeSeekBar;
+
 import javax.inject.Inject;
 
 import knab.pl.smartwalk.R;
@@ -23,9 +25,11 @@ import knab.pl.smartwalk.model.SignalAdapter;
 public class SoleSensorGraphFragment extends Fragment {
 
     private GraphView rightBottomGraphView;
+    private RangeSeekBar rangeSeekBar;
 
     @Inject
     SignalAdapter signalAdapter;
+    private View upRangeBar;
 
     public SoleSensorGraphFragment() {
         // Required empty public constructor
@@ -43,6 +47,7 @@ public class SoleSensorGraphFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_sole_sensor_graph, container, false);
         bindGraphViews(rootView);
         setUpGraphViews();
+        setUpRangeBar(rootView);
 
         return rootView;
     }
@@ -62,6 +67,12 @@ public class SoleSensorGraphFragment extends Fragment {
         rightBottomGraphView.addSeries(new LineGraphSeries(signalAdapter.getSignalAsDataPoints(SensorNames.RIGHT_BOTTOM)));
     }
 
+    public void setUpRangeBar(View rootView) {
+        rangeSeekBar = (RangeSeekBar) rootView.findViewById(R.id.range_bar);
+        rangeSeekBar.setRangeValues(0, 60);
+        rangeSeekBar.setTextAboveThumbsColorResource(R.color.colorPrimaryDark);
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -71,4 +82,6 @@ public class SoleSensorGraphFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
     }
+
+
 }

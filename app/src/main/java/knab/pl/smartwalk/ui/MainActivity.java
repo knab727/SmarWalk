@@ -11,8 +11,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +18,7 @@ import java.util.List;
 import knab.pl.smartwalk.R;
 import knab.pl.smartwalk.SmartWalkApplication;
 import knab.pl.smartwalk.ui.fragments.GoniometerFragment;
-import knab.pl.smartwalk.ui.fragments.SoleSensorGraphFragment;
+import knab.pl.smartwalk.ui.fragments.sole_sensor_graphs.SoleSensorGraphFragment;
 import knab.pl.smartwalk.ui.fragments.SolesFragment;
 
 public class MainActivity extends AppCompatActivity {
