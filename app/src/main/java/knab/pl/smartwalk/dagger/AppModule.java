@@ -3,22 +3,14 @@ package knab.pl.smartwalk.dagger;
 
 import android.app.Application;
 
-import javax.inject.Singleton;
+import knab.pl.smartwalk.SmartWalkApplication;
+import knab.pl.smartwalk.model.SignalAdapter;
 
-import dagger.Module;
-import dagger.Provides;
+public interface AppModule {
 
-@Module
-public class AppModule {
-    Application application;
+    SmartWalkApplication providesSmartWalkApplication();
 
-    public AppModule(Application application) {
-        this.application = application;
-    }
-
-    @Provides
-    @Singleton
-    Application providesApplication() {
-        return application;
-    }
+    SignalAdapter providesSignalAdapter();
+    Application providesApplication();
+    DependencyInjector providesDependencyInjector();
 }

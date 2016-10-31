@@ -100,13 +100,4 @@ public class SignalAdapter {
         return sensorSignals.get(sensorName);
     }
 
-    public DataPoint[] getSignalAsDataPoints(String sensorName) {
-        List<SignalSample> signalSamples = sensorSignals.get(sensorName);
-        DataPoint points[] = new DataPoint[signalSamples.size()];
-        int i = 0;
-        for(SignalSample sample : signalSamples) {
-            points[i++] = new DataPoint(sample.milis, sample.value);
-        }
-        return points;
-    }
 }

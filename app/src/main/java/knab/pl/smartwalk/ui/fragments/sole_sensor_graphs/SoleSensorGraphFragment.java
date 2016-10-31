@@ -1,8 +1,6 @@
 package knab.pl.smartwalk.ui.fragments.sole_sensor_graphs;
 
 import android.content.Context;
-import android.hardware.Sensor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -20,15 +18,18 @@ import javax.inject.Inject;
 import knab.pl.smartwalk.R;
 import knab.pl.smartwalk.SmartWalkApplication;
 import knab.pl.smartwalk.model.SensorNames;
-import knab.pl.smartwalk.model.SignalAdapter;
+import knab.pl.smartwalk.ui.fragments.sole_sensor_graphs.mvp.SoleSensorGraphMVP;
 
-public class SoleSensorGraphFragment extends Fragment {
+public class SoleSensorGraphFragment extends Fragment implements SoleSensorGraphMVP.View{
 
     private GraphView rightBottomGraphView;
     private RangeSeekBar<Integer> rangeSeekBar;
+    private static final int SEEKBAR_MAX = 60;
+    private static final int SEEKBAR_MIN = 0;
 
     @Inject
-    SignalAdapter signalAdapter;
+    SoleSensorGraphMVP.Presenter presenter;
+
     private View upRangeBar;
 
     public SoleSensorGraphFragment() {
@@ -38,7 +39,7 @@ public class SoleSensorGraphFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((SmartWalkApplication) getActivity().getApplication()).getSignalComponent().inject(this);
+        ((SmartWalkApplication) getActivity().getApplication()).provideDependencyInjector().inject(this);
     }
 
     @Override
@@ -59,23 +60,23 @@ public class SoleSensorGraphFragment extends Fragment {
         rightBottomGraphView.getViewport().setXAxisBoundsManual(true);
         rightBottomGraphView.getViewport().setXAxisBoundsManual(true);
         rightBottomGraphView.getViewport().setMinX(0);
-        rightBottomGraphView.getViewport().setMaxX(500);
+        rightBottomGraphView.getViewport().setMaxX(2000);
 
     }
 
     private void setUpGraphViews() {
-        rightBottomGraphView.addSeries(new LineGraphSeries(signalAdapter.getSignalAsDataPoints(SensorNames.RIGHT_BOTTOM)));
+        presenter.getPointsInTime(SEEKBAR_MIN, SEEKBAR_MAX);
     }
 
     public void setUpRangeBar(View rootView) {
         rangeSeekBar = (RangeSeekBar) rootView.findViewById(R.id.range_bar);
-        rangeSeekBar.setRangeValues(0, 60);
+        rangeSeekBar.setRangeValues(SEEKBAR_MIN, SEEKBAR_MAX);
         rangeSeekBar.setTextAboveThumbsColorResource(R.color.colorPrimaryDark);
 
         rangeSeekBar.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener<Integer>() {
             @Override
             public void onRangeSeekBarValuesChanged(RangeSeekBar<?> bar, Integer minValue, Integer maxValue) {
-
+                presenter.getPointsInTime(minValue, maxValue);
             }
         });
     }
@@ -91,4 +92,8 @@ public class SoleSensorGraphFragment extends Fragment {
     }
 
 
+    @Override
+    public void updateGraphForSensor(DataPoint[] data, String sensorName) {
+        rightBottomGraphView.addSeries(new LineGraphSeries(data));
+    }
 }

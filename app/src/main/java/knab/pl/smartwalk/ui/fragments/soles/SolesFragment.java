@@ -1,4 +1,4 @@
-package knab.pl.smartwalk.ui.fragments;
+package knab.pl.smartwalk.ui.fragments.soles;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -33,7 +33,7 @@ public class SolesFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((SmartWalkApplication) getActivity().getApplication()).getSignalComponent().inject(this);
+        ((SmartWalkApplication) getActivity().getApplication()).provideDependencyInjector().inject(this);
     }
 
     @Override
