@@ -47,8 +47,8 @@ public class SignalAdapter {
     private void mockStep(int numberOfMillisPerStep, int offset) {
         for (int i = 0; i < numberOfMillisPerStep; i = i + 5) {
             long milis = offset * numberOfMillisPerStep + i;
-            int sinValue = (int) Math.round(Math.abs(Math.sin(i)*Math.pow(2, 12)));
-            int cosValue = (int) Math.round(Math.abs(Math.cos(i)*Math.pow(2, 12)));
+            int sinValue = (int) Math.round(Math.abs(Math.sin((double)i/5000.)*Math.pow(2, 12)));
+            int cosValue = (int) Math.round(Math.abs(Math.cos((double)i/5000.)*Math.pow(2, 12)));
 
             sensorSignals.get(LEFT_TOP).add(new SignalSample(milis, sinValue));
             sensorSignals.get(LEFT_ONE_OUTER).add(new SignalSample(milis, sinValue));
@@ -98,6 +98,10 @@ public class SignalAdapter {
 
     public List<SignalSample> getSignalForSensor(String sensorName) {
         return sensorSignals.get(sensorName);
+    }
+
+    public Map<String, List<SignalSample>> getSignals() {
+        return sensorSignals;
     }
 
 }
