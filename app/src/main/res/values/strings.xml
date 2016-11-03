@@ -7,4 +7,5 @@
     <string name="center_mass">Środek Masy</string>
     <string name="pressure_sensors">Czujniki Nacisku</string>
     <string name="goniometers">Goniometry</string>
+    <string name="start_procedure">Rozpoczynam Badanie</string>
 </resources>

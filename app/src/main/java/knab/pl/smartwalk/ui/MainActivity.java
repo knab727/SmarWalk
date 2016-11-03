@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Starting measurements", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, R.string.start_procedure, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
