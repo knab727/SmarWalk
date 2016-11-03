@@ -100,4 +100,8 @@ public class SignalAdapter {
         return sensorSignals.get(sensorName);
     }
 
+    public Map<String, List<SignalSample>> getSignals() {
+        return sensorSignals;
+    }
+
 }

@@ -19,10 +19,11 @@ import knab.pl.smartwalk.R;
 import knab.pl.smartwalk.SmartWalkApplication;
 import knab.pl.smartwalk.model.SensorNames;
 import knab.pl.smartwalk.ui.fragments.sole_sensor_graphs.mvp.SoleSensorGraphMVP;
+import knab.pl.smartwalk.ui.views.GraphViews;
 
 public class SoleSensorGraphFragment extends Fragment implements SoleSensorGraphMVP.View{
 
-    private GraphView rightBottomGraphView;
+    private GraphViews graphViews;
     private RangeSeekBar<Integer> rangeSeekBar;
     private static final int SEEKBAR_MAX = 60;
     private static final int SEEKBAR_MIN = 0;
@@ -54,16 +55,7 @@ public class SoleSensorGraphFragment extends Fragment implements SoleSensorGraph
     }
 
     private void bindGraphViews(View rootView) {
-        rightBottomGraphView = (GraphView) rootView.findViewById(R.id.bottom_right_graph);
-        rightBottomGraphView.setTitle(SensorNames.RIGHT_BOTTOM);
-        rightBottomGraphView.getViewport().setScalable(true);
-        rightBottomGraphView.getViewport().setXAxisBoundsManual(true);
-        rightBottomGraphView.getViewport().setYAxisBoundsManual(true);
-        rightBottomGraphView.getViewport().setMinX(0);
-        rightBottomGraphView.getViewport().setMaxX(1000);
-        rightBottomGraphView.getViewport().setMinY(0);
-        rightBottomGraphView.getViewport().setMaxY(5000);
-
+        graphViews = new GraphViews(rootView);
     }
 
     private void setUpGraphViews() {
@@ -78,6 +70,8 @@ public class SoleSensorGraphFragment extends Fragment implements SoleSensorGraph
         rangeSeekBar.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener<Integer>() {
             @Override
             public void onRangeSeekBarValuesChanged(RangeSeekBar<?> bar, Integer minValue, Integer maxValue) {
+                if(minValue.equals(maxValue))
+                    return;
                 presenter.getPointsInTime(minValue, maxValue);
             }
         });
@@ -96,9 +90,6 @@ public class SoleSensorGraphFragment extends Fragment implements SoleSensorGraph
 
     @Override
     public void updateGraphForSensor(DataPoint[] data, String sensorName) {
-        rightBottomGraphView.removeAllSeries();
-        rightBottomGraphView.addSeries(new LineGraphSeries(data));
-        rightBottomGraphView.getViewport().setMinX(data[0].getX());
-        rightBottomGraphView.getViewport().setMaxX(data[data.length-1].getX());
+        graphViews.updateDataForGraphView(data, sensorName);
     }
 }
