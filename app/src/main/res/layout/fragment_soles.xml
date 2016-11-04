@@ -20,7 +20,7 @@
             android:layout_width="0dp"
             android:layout_height="88dp"
             android:text="@string/start"
-            android:id="@+id/play_pause_button"
+            android:id="@+id/start_stop_button"
             android:layout_weight="0.20"/>
 
     </LinearLayout>

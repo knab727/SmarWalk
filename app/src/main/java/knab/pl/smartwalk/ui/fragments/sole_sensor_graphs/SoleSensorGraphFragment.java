@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
@@ -21,7 +22,7 @@ import knab.pl.smartwalk.model.SensorNames;
 import knab.pl.smartwalk.ui.fragments.sole_sensor_graphs.mvp.SoleSensorGraphMVP;
 import knab.pl.smartwalk.ui.views.GraphViews;
 
-public class SoleSensorGraphFragment extends Fragment implements SoleSensorGraphMVP.View{
+public class SoleSensorGraphFragment extends Fragment implements SoleSensorGraphMVP.View {
 
     private GraphViews graphViews;
     private RangeSeekBar<Integer> rangeSeekBar;

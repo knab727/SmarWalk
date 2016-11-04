@@ -6,8 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import org.florescu.android.rangeseekbar.RangeSeekBar;
@@ -20,11 +19,13 @@ import knab.pl.smartwalk.model.SignalAdapter;
 import knab.pl.smartwalk.ui.views.RectangleView;
 import knab.pl.smartwalk.ui.views.SensorViews;
 
-public class SolesFragment extends Fragment {
+public class SolesFragment extends Fragment implements View.OnClickListener {
 
     int h, w;
     SensorViews sensorViews;
     private RangeSeekBar<Integer> rangeSeekBar;
+    private Button startStopButton;
+    private boolean isPlaying = false;
     private static final int SEEKBAR_MAX = 60;
     private static final int SEEKBAR_MIN = 0;
 
@@ -46,6 +47,7 @@ public class SolesFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_soles, container, false);
         setupSeekBar(rootView);
+        initButtons(rootView);
 //        final ImageView iv = (ImageView) rootView.findViewById(R.id.right_foot);
 //        RelativeLayout relativeLayout = (RelativeLayout) rootView.findViewById(R.id.rect);
 //        addSensorViews(relativeLayout);
@@ -61,6 +63,12 @@ public class SolesFragment extends Fragment {
         return rootView;
     }
 
+    private void initButtons(View rootView) {
+        startStopButton = (Button) rootView.findViewById(R.id.start_stop_button);
+        startStopButton.setOnClickListener(this);
+    }
+
+
     private void setupSeekBar(View rootView) {
         rangeSeekBar = (RangeSeekBar) rootView.findViewById(R.id.soles_time_seek_bar);
         rangeSeekBar.setRangeValues(SEEKBAR_MIN, SEEKBAR_MAX);
@@ -69,7 +77,7 @@ public class SolesFragment extends Fragment {
         rangeSeekBar.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener<Integer>() {
             @Override
             public void onRangeSeekBarValuesChanged(RangeSeekBar<?> bar, Integer minValue, Integer maxValue) {
-                if(minValue.equals(maxValue))
+                if (minValue.equals(maxValue))
                     return;
                 //presenter.getPointsInTime(minValue, maxValue);
             }
@@ -77,7 +85,7 @@ public class SolesFragment extends Fragment {
     }
 
     @Override
-    public void onActivityCreated (Bundle savedInstanceState) {
+    public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
     }
 
@@ -97,6 +105,12 @@ public class SolesFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+
+    @Override
+    public void onClick(View v) {
+
     }
 
 }
