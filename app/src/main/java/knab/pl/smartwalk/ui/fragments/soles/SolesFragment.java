@@ -10,6 +10,8 @@ import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import org.florescu.android.rangeseekbar.RangeSeekBar;
+
 import javax.inject.Inject;
 
 import knab.pl.smartwalk.R;
@@ -22,6 +24,9 @@ public class SolesFragment extends Fragment {
 
     int h, w;
     SensorViews sensorViews;
+    private RangeSeekBar<Integer> rangeSeekBar;
+    private static final int SEEKBAR_MAX = 60;
+    private static final int SEEKBAR_MIN = 0;
 
     @Inject
     SignalAdapter signalAdapter;
@@ -40,6 +45,7 @@ public class SolesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_soles, container, false);
+        setupSeekBar(rootView);
 //        final ImageView iv = (ImageView) rootView.findViewById(R.id.right_foot);
 //        RelativeLayout relativeLayout = (RelativeLayout) rootView.findViewById(R.id.rect);
 //        addSensorViews(relativeLayout);
@@ -53,6 +59,21 @@ public class SolesFragment extends Fragment {
 //            }
 //        });
         return rootView;
+    }
+
+    private void setupSeekBar(View rootView) {
+        rangeSeekBar = (RangeSeekBar) rootView.findViewById(R.id.soles_time_seek_bar);
+        rangeSeekBar.setRangeValues(SEEKBAR_MIN, SEEKBAR_MAX);
+        rangeSeekBar.setTextAboveThumbsColorResource(R.color.colorPrimaryDark);
+
+        rangeSeekBar.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener<Integer>() {
+            @Override
+            public void onRangeSeekBarValuesChanged(RangeSeekBar<?> bar, Integer minValue, Integer maxValue) {
+                if(minValue.equals(maxValue))
+                    return;
+                //presenter.getPointsInTime(minValue, maxValue);
+            }
+        });
     }
 
     @Override
