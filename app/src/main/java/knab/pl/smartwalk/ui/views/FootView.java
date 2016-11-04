@@ -121,21 +121,46 @@ public class FootView extends View {
                         margin + (w / 5) / 2 + w / 15 + 7 * w / 20,
                         margin + 27 * h / 42 + 2 * h / 10);
             case SensorNames.LEFT_TOP:
-                return new Rect(23 * w / 100, h / 50, 23 * w / 100 + width, h / 50 + height);
+                return new Rect(w - w / 5 - margin,
+                        margin,
+                        w - margin,
+                        h / 10 + margin);
             case SensorNames.LEFT_ONE_INNER:
-                return new Rect(11 * w / 80, 2 * h / 13, 11 * w / 80 + width, 2 * h / 13 + height);
+                return new Rect(w - (margin + w / 5),
+                        margin + h / 7,
+                        w - margin,
+                        margin + h / 7 + h / 7);
             case SensorNames.LEFT_ONE_OUTER:
-                return new Rect(18 * w / 43, 2 * h / 13, 18 * w / 43 + width, 2 * h / 13 + height);
+                return new Rect(
+                        w - (margin + w / 2 + w / 5),
+                        margin + h / 7,
+                        w - (margin + w / 2),
+                        margin + h / 7 + h / 8);
             case SensorNames.LEFT_TWO_INNER:
-                return new Rect(14 * w / 81, 27 * h / 74, 14 * w / 81 + width, 27 * h / 74 + height);
+                return new Rect(w - (margin + (w / 5) / 2 + w / 5),
+                        margin + 3 * h / 7,
+                        w - (margin + (w / 5) / 2),
+                        margin + 3 * h / 7 + h / 10);
             case SensorNames.LEFT_TWO_OUTER:
-                return new Rect(7 * w / 15, 28 * h / 77, 7 * w / 15 + width, 28 * h / 77 + height);
+                return new Rect(w - (margin + (w / 5) / 2 + 2 * w / 5),
+                        margin + 2 * h / 7,
+                        w - (margin + (w / 5) / 2 + w / 5),
+                        margin + 2 * h / 7 + h / 6);
             case SensorNames.LEFT_THREE_INNER:
-                return new Rect(16 * w / 79, 17 * h / 25, 16 * w / 79 + width, 17 * h / 25 + height);
+                return new Rect(w- (margin + (w / 5) / 2 + w / 5),
+                        margin + 27 * h / 42,
+                        w - (margin + (w / 5) / 2),
+                        margin + 27 * h / 42 + h / 10);
             case SensorNames.LEFT_THREE_OUTER:
-                return new Rect(37 * w / 84, 18 * h / 26, 37 * w / 84 + width, 18 * h / 26 + height);
+                return new Rect(w - (margin + (w / 5) / 2 + w / 20 + 2 * w / 5),
+                        margin + 27 * h / 42,
+                        w - (margin + (w / 5) / 2 + w / 5 + w / 20),
+                        margin + 27 * h / 42 + h / 10);
             case SensorNames.LEFT_BOTTOM:
-                return new Rect(18 * w / 43 - width, 46 * h / 55, 18 * w / 43, 46 * h / 55 + height);
+                return new Rect(w - (margin + (w / 5) / 2 + w / 15 + 7 * w / 20),
+                        margin + 27 * h / 42 + h / 10 + h / 100,
+                        w - (margin + (w / 5) / 2 + w / 15),
+                        margin + 27 * h / 42 + 2 * h / 10);
         }
         return new Rect(0, 0, 0, 0);
     }
