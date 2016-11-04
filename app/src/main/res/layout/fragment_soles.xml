@@ -2,16 +2,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="knab.pl.smartwalk.ui.fragments.soles.SolesFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="knab.pl.smartwalk.ui.fragments.soles.SolesFragment">
 
-    <org.florescu.android.rangeseekbar.RangeSeekBar
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/soles_time_seek_bar"/>
+        android:orientation="horizontal">
+
+        <org.florescu.android.rangeseekbar.RangeSeekBar
+            android:id="@+id/soles_time_seek_bar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="88dp"
+            android:text="@string/start"
+            android:id="@+id/play_pause_button"
+            android:layout_weight="0.20"/>
+
+    </LinearLayout>
+
     <View
+        android:id="@+id/soles_canvas"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/soles_canvas"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>
