@@ -1,22 +1,17 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="knab.pl.smartwalk.ui.fragments.soles.SolesFragment">
+    tools:context="knab.pl.smartwalk.ui.fragments.soles.SolesFragment"
+    android:orientation="vertical">
 
-    <ImageView
+    <org.florescu.android.rangeseekbar.RangeSeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/soles_time_seek_bar"/>
+    <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src = "@drawable/right_foot"
-        android:scaleType="fitCenter"
-        android:id="@+id/right_foot">
-    </ImageView>
+        android:id="@+id/soles_canvas"/>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/rect">
-
-    </RelativeLayout>
-
-</FrameLayout>
+</LinearLayout>

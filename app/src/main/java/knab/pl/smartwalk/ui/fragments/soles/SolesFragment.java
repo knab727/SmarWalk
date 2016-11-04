@@ -40,18 +40,18 @@ public class SolesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_soles, container, false);
-        final ImageView iv = (ImageView) rootView.findViewById(R.id.right_foot);
-        RelativeLayout relativeLayout = (RelativeLayout) rootView.findViewById(R.id.rect);
-        addSensorViews(relativeLayout);
-        iv.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                iv.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                h = iv.getMeasuredHeight();
-                w = iv.getMeasuredWidth();
-                sensorViews.update(h, w);
-            }
-        });
+//        final ImageView iv = (ImageView) rootView.findViewById(R.id.right_foot);
+//        RelativeLayout relativeLayout = (RelativeLayout) rootView.findViewById(R.id.rect);
+//        addSensorViews(relativeLayout);
+//        iv.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+//            @Override
+//            public void onGlobalLayout() {
+//                iv.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+//                h = iv.getMeasuredHeight();
+//                w = iv.getMeasuredWidth();
+//                sensorViews.update(h, w);
+//            }
+//        });
         return rootView;
     }
 
