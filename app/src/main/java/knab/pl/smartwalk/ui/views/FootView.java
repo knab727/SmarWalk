@@ -10,20 +10,22 @@ import android.graphics.Rect;
 import android.view.View;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import knab.pl.smartwalk.model.SensorNames;
 
 public class FootView extends View {
 
-    private Path path;
     private Paint paint;
     private Rect footBackground;
     private int margin = 20;
     private Map<String, Rect> rectangles = new HashMap<>();
+    private Map<String, Paint> rectanglePaints = new HashMap<>();
     private boolean isRight;
     private int w;
     private int h;
+    List<String> sensorNames;
 
     public FootView(Context context, boolean isRight) {
         super(context);
@@ -31,6 +33,15 @@ public class FootView extends View {
         paint.setColor(Color.rgb(220, 120, 90));
         paint.setStrokeWidth(150);
         this.isRight = isRight;
+        if(isRight) {
+            sensorNames = SensorNames.rightSensorNames;
+        } else {
+            sensorNames = SensorNames.leftSensorNames;
+        }
+        for(String name : sensorNames) {
+            rectanglePaints.put(name, new Paint());
+            rectanglePaints.get(name).setColor(calculateColorFromPressure(22));
+        }
     }
 
 
@@ -40,12 +51,11 @@ public class FootView extends View {
         this.w = w;
         this.h = h;
         footBackground = new Rect(margin, margin, w - margin, h - margin);
-
         updateSensorViewsSizes();
     }
 
     private void updateSensorViewsSizes() {
-        for (String sensorName : SensorNames.sensorNames) {
+        for (String sensorName : sensorNames) {
             rectangles.put(sensorName, getRectByName(sensorName));
         }
     }
@@ -55,9 +65,9 @@ public class FootView extends View {
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawRect(footBackground, paint);
-//        canvas.drawCircle(500, 500, 300, paint);
-//        canvas.drawText("This is bloody good!", canvas.getWidth()/2, canvas.getHeight()/2, paint);
-//        canvas.drawRect(canvas.getClipBounds(), paint);
+        for(Map.Entry<String, Rect> rect : rectangles.entrySet()) {
+            canvas.drawRect(rect.getValue(), rectanglePaints.get(rect.getKey()));
+        }
     }
 
     public int calculateColorFromPressure(int pressure) {
@@ -86,6 +96,22 @@ public class FootView extends View {
             case SensorNames.RIGHT_THREE_OUTER:
                 return new Rect(37 * w / 84, 18 * h / 26, 37 * w / 84 + width, 18 * h / 26 + height);
             case SensorNames.RIGHT_BOTTOM:
+                return new Rect(18 * w / 43 - width, 46 * h / 55, 18 * w / 43, 46 * h / 55 + height);
+            case SensorNames.LEFT_TOP:
+                return new Rect(23 * w / 100, h / 50, 23 * w / 100 + width, h / 50 + height);
+            case SensorNames.LEFT_ONE_INNER:
+                return new Rect(11 * w / 80, 2 * h / 13, 11 * w / 80 + width, 2 * h / 13 + height);
+            case SensorNames.LEFT_ONE_OUTER:
+                return new Rect(18 * w / 43, 2 * h / 13, 18 * w / 43 + width, 2 * h / 13 + height);
+            case SensorNames.LEFT_TWO_INNER:
+                return new Rect(14 * w / 81, 27 * h / 74, 14 * w / 81 + width, 27 * h / 74 + height);
+            case SensorNames.LEFT_TWO_OUTER:
+                return new Rect(7 * w / 15, 28 * h / 77, 7 * w / 15 + width, 28 * h / 77 + height);
+            case SensorNames.LEFT_THREE_INNER:
+                return new Rect(16 * w / 79, 17 * h / 25, 16 * w / 79 + width, 17 * h / 25 + height);
+            case SensorNames.LEFT_THREE_OUTER:
+                return new Rect(37 * w / 84, 18 * h / 26, 37 * w / 84 + width, 18 * h / 26 + height);
+            case SensorNames.LEFT_BOTTOM:
                 return new Rect(18 * w / 43 - width, 46 * h / 55, 18 * w / 43, 46 * h / 55 + height);
         }
         return new Rect(0, 0, 0, 0);

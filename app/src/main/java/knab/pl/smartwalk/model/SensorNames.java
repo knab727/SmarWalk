@@ -1,6 +1,7 @@
 package knab.pl.smartwalk.model;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,4 +29,12 @@ public class SensorNames {
             SensorNames.LEFT_TOP, SensorNames.RIGHT_BOTTOM, SensorNames.RIGHT_ONE_INNER, SensorNames.RIGHT_ONE_OUTER,
             SensorNames.RIGHT_TWO_INNER, SensorNames.RIGHT_TWO_OUTER, SensorNames.RIGHT_THREE_INNER, SensorNames.RIGHT_THREE_OUTER,
             SensorNames.RIGHT_TOP);
+
+    public static final List<String> rightSensorNames = Arrays.asList(SensorNames.RIGHT_BOTTOM, SensorNames.RIGHT_ONE_INNER, SensorNames.RIGHT_ONE_OUTER,
+            SensorNames.RIGHT_TWO_INNER, SensorNames.RIGHT_TWO_OUTER, SensorNames.RIGHT_THREE_INNER, SensorNames.RIGHT_THREE_OUTER,
+            SensorNames.RIGHT_TOP);
+
+    public static final List<String> leftSensorNames = Arrays.asList(SensorNames.LEFT_BOTTOM, SensorNames.LEFT_ONE_INNER, SensorNames.LEFT_ONE_OUTER,
+            SensorNames.LEFT_TWO_INNER, SensorNames.LEFT_TWO_OUTER, SensorNames.LEFT_THREE_INNER, SensorNames.LEFT_THREE_OUTER,
+            SensorNames.LEFT_TOP);
 }
