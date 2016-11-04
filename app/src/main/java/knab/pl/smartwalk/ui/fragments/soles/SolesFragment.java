@@ -52,18 +52,6 @@ public class SolesFragment extends Fragment implements View.OnClickListener {
         setupSeekBar(rootView);
         initButtons(rootView);
         initFeet((LinearLayout) rootView);
-//        final ImageView iv = (ImageView) rootView.findViewById(R.id.right_foot);
-//        RelativeLayout relativeLayout = (RelativeLayout) rootView.findViewById(R.id.rect);
-//        addSensorViews(relativeLayout);
-//        iv.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-//            @Override
-//            public void onGlobalLayout() {
-//                iv.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-//                h = iv.getMeasuredHeight();
-//                w = iv.getMeasuredWidth();
-//                sensorViews.update(h, w);
-//            }
-//        });
         return rootView;
     }
 

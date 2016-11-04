@@ -69,6 +69,12 @@ public class FootView extends View {
         }
     }
 
+    public void setPressureOnSensor(String sensorName, int pressure) {
+        Paint paint = rectanglePaints.get(sensorName);
+        if(paint != null)
+            paint.setColor(calculateColorFromPressure(pressure));
+    }
+
     public int calculateColorFromPressure(int pressure) {
         float R = (255 * pressure) / 100;
         float G = 0;
