@@ -3,10 +3,12 @@ package knab.pl.smartwalk.ui.fragments.soles;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import org.florescu.android.rangeseekbar.RangeSeekBar;
@@ -16,6 +18,7 @@ import javax.inject.Inject;
 import knab.pl.smartwalk.R;
 import knab.pl.smartwalk.SmartWalkApplication;
 import knab.pl.smartwalk.model.SignalAdapter;
+import knab.pl.smartwalk.ui.views.FootView;
 import knab.pl.smartwalk.ui.views.RectangleView;
 import knab.pl.smartwalk.ui.views.SensorViews;
 
@@ -48,6 +51,7 @@ public class SolesFragment extends Fragment implements View.OnClickListener {
         View rootView = inflater.inflate(R.layout.fragment_soles, container, false);
         setupSeekBar(rootView);
         initButtons(rootView);
+        initFeet((LinearLayout) rootView);
 //        final ImageView iv = (ImageView) rootView.findViewById(R.id.right_foot);
 //        RelativeLayout relativeLayout = (RelativeLayout) rootView.findViewById(R.id.rect);
 //        addSensorViews(relativeLayout);
@@ -61,6 +65,19 @@ public class SolesFragment extends Fragment implements View.OnClickListener {
 //            }
 //        });
         return rootView;
+    }
+
+    private void initFeet(LinearLayout rootView) {
+        LinearLayout canvas = (LinearLayout) rootView.findViewById(R.id.canvas_layout);
+        FootView leftFoot = new FootView(this.getContext(), false);
+        leftFoot.setLayoutParams(new LinearLayout.LayoutParams(0,
+                ViewGroup.LayoutParams.MATCH_PARENT, 0.5f));
+        canvas.addView(leftFoot);
+        FootView righFoot = new FootView(this.getContext(), true);
+        righFoot.setLayoutParams(new LinearLayout.LayoutParams(0,
+                ViewGroup.LayoutParams.MATCH_PARENT, 0.5f));
+        canvas.addView(righFoot);
+
     }
 
     private void initButtons(View rootView) {
