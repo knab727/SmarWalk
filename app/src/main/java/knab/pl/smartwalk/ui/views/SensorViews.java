@@ -15,6 +15,7 @@ public class SensorViews {
     private Map<String, RectangleView> sensorViews = new HashMap<>();
     private Context context;
 
+
     public SensorViews(Context context, int h, int w) {
         this.context = context;
         setupViews(h, w);
